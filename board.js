@@ -12,7 +12,6 @@ class Board {
         ];
         this.spawnCell();
         this.spawnCell();
-        this.drawDefaultCells();
         this.pushDirection = 0;
         this.score = 0;
     }
