@@ -17,6 +17,18 @@ function getElementOfCssGrid(x, y) {
 
 let createGame = () => {
     game = new Board();
+
+    // checks the clients local storage for a saved highscore and retrieves it
+    if (typeof (Storage) !== "undefined") {
+        highscore = localStorage.getItem("high-score");
+        if(highscore === null){
+            highscore = 0;
+            localStorage.setItem("high-score", 0);
+        }
+        document.querySelector(".high-score").innerHTML = highscore;
+        game.setHighscore(parseInt(highscore));
+    }
+
 };
 
 let gameLoop = () => {
@@ -77,11 +89,22 @@ let updateCells = () => {
 
 let updateScore = () => {
     let score = document.querySelector(".score");
-    score.innerHTML = "Score: " + game.score;
+    score.innerHTML = game.score;
+
+    if (game.score > game.highscore) {
+        game.setHighscore(game.score);
+        let highscore = document.querySelector(".high-score");
+        highscore.innerHTML = game.highscore;
+    }
 }
 
 createGame();
 gameLoop();
+
+
+window.addEventListener("beforeunload", function (e) {
+    localStorage.setItem("high-score", game.highscore);
+});
 
 document.addEventListener("keydown", eventHandler);
 
@@ -89,7 +112,7 @@ let btn = document.querySelector(".resetBtn");
 btn.addEventListener("click", eventHandler);
 
 function eventHandler(event) {
-    if(event.repeat){
+    if (event.repeat) {
         return;
     }
     else if (event.key == "ArrowDown") {

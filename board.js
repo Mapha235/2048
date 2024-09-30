@@ -1,5 +1,6 @@
 class Board {
     constructor() {
+        this.highscore = 0;
         this.reset();
     }
 
@@ -14,6 +15,10 @@ class Board {
         this.spawnCell();
         this.pushDirection = 0;
         this.score = 0;
+    }
+
+    setHighscore(val){
+        this.highscore = val;
     }
 
     spawnCell() {
