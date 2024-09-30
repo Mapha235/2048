@@ -32,6 +32,15 @@ body{
     z-index: 1;
 }
 
+#canvas{
+    /* margin-top: -500px; */
+    border-radius: 5px;
+    border-spacing: 10px;
+    padding: 15px;
+    position: absolute;
+    z-index: 3;
+}
+
 
 .title{
     grid-area: title;
@@ -40,13 +49,6 @@ body{
     margin-right: 100px;
 }
 
-.score{
-    grid-area: score;
-}
-
-.high-score{
-    grid-area: highscore;
-}
 
 .resetBtn{
     grid-area: resetBtn;
@@ -54,20 +56,43 @@ body{
     margin-bottom: 10px;
 }
 
-.score-container > *{
+.score-container{
+    display: flex;
+    grid-area: score-container;
+}
+
+.score{
+    color: white;
+}
+
+.high-score{
+    color: white;
+}
+
+.score-container > div{
     background-color: rgb(204, 192, 179);
     border-radius: 5px;
     text-align: left;
+    width: 100px;
     padding: 10px;
     margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 .misc-container{
     display: grid;
     grid-template-areas: 
-    'title title score highscore'
-    'title title resetBtn resetBtn';
+    'title title score-container'
+    'title title resetBtn';
     width: 480px;
+}
+
+.resetBtn{
+    margin-left: 10px;
+    background-color: rgb(176, 166, 155);
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .misc-container > * {
